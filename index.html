@@ -1,1 +1,118 @@
-I Love Maxim_Lapkin
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOUR_NICKNAME | Персонаж</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем красивые шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Фоновое изображение и оверлей -->
+    <div class="bg-wrapper"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- Кнопки-триггеры для боковых панелей -->
+    <button class="sidebar-trigger left-trigger" id="leftTrigger" aria-label="Открыть меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+
+    <button class="sidebar-trigger right-trigger" id="rightTrigger" aria-label="Открыть дополнительно">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+    </button>
+
+    <!-- Левая боковая панель (Навигация) -->
+    <aside class="sidebar left-sidebar" id="leftSidebar">
+        <button class="close-btn" id="leftClose" aria-label="Закрыть">&times;</button>
+        <h2 class="sidebar-title">Содержание</h2>
+        <nav class="sidebar-nav">
+            <a href="#bio" class="nav-link">Биография</a>
+            <a href="#lore" class="nav-link">Лор</a>
+            <a href="#arts" class="nav-link">Арты</a>
+            <a href="#about" class="nav-link">О сайте</a>
+        </nav>
+    </aside>
+
+    <!-- Правая боковая панель (Дополнительно) -->
+    <aside class="sidebar right-sidebar" id="rightSidebar">
+        <button class="close-btn" id="rightClose" aria-label="Закрыть">&times;</button>
+        <h2 class="sidebar-title">Дополнительно</h2>
+        <div class="sidebar-links">
+            <a href="#" class="extra-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>Друзья</span>
+            </a>
+            <a href="#" class="extra-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.74 3.99-1.73 6.65-2.87 7.95-3.44 3.79-1.58 4.57-1.85 5.08-1.86.11 0 .37.03.54.17.14.12.18.28.2.45-.01.06.01.24 0 .38z"/></svg>
+                <span>Телеграм канал</span>
+            </a>
+            <a href="#" class="extra-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>Донат</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Основной контент -->
+    <main class="content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="nickname">YOUR_NICKNAME</h1>
+            <p class="subtitle">Краткое описание или слоган персонажа</p>
+        </section>
+
+        <!-- Биография -->
+        <section id="bio" class="section-card animate-on-scroll">
+            <h2 class="section-title">Биография</h2>
+            <p>Здесь рассказывается история твоего персонажа. Откуда он родом, как выглядит, какие у него цели и мотивации. Этот блок задуман как полупрозрачная карточка, чтобы текст легко читался на любом фоне.</p>
+            <p>Ты можешь расширять этот текст, добавлять списки, цитаты и другие элементы форматирования.</p>
+        </section>
+
+        <!-- Лор -->
+        <section id="lore" class="section-card animate-on-scroll">
+            <h2 class="section-title">Лор</h2>
+            <p>Мир, в котором живет персонаж. Описание фракций, магических систем, технологий или политических интриг. Всё, что формирует окружение и контекст для биографии.</p>
+        </section>
+
+        <!-- Арты -->
+        <section id="arts" class="section-card animate-on-scroll">
+            <h2 class="section-title">Галерея Артов</h2>
+            <p class="section-desc">Коллекция визуальных образов. Чтобы добавить новый арт, просто скопируй блок <code>&lt;div class="art-item"&gt;</code> и замени путь к изображению.</p>
+            
+            <div class="arts-grid">
+                <div class="art-item">
+                    <img src="art-1.jpg" alt="Арт 1" loading="lazy">
+                </div>
+                <div class="art-item">
+                    <img src="art-2.jpg" alt="Арт 2" loading="lazy">
+                </div>
+                <div class="art-item">
+                    <img src="art-3.jpg" alt="Арт 3" loading="lazy">
+                </div>
+                <div class="art-item">
+                    <img src="art-4.jpg" alt="Арт 4" loading="lazy">
+                </div>
+                <div class="art-item">
+                    <img src="art-5.jpg" alt="Арт 5" loading="lazy">
+                </div>
+                <div class="art-item">
+                    <img src="art-6.jpg" alt="Арт 6" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- О сайте -->
+        <section id="about" class="section-card animate-on-scroll">
+            <h2 class="section-title">О сайте</h2>
+            <p>Этот сайт создан как личная визитка для моего персонажа. Здесь собрана вся основная информация, лор и визуальные материалы. Сайт полностью адаптивен и оптимизирован для просмотра на любых устройствах.</p>
+            <p class="footer-text">&copy; 2024 YOUR_NICKNAME. Все права на персонажа принадлежат автору.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

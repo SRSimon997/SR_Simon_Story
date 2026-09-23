@@ -1,0 +1,445 @@
+/* =========================================
+   ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
+   ========================================= */
+:root {
+    --bg-dark: #0a0a12;
+    --card-bg: rgba(15, 15, 25, 0.75);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-main: #e0e0e5;
+    --text-muted: #a0a0b0;
+    --accent-1: #00f0ff; /* Неоновый циан */
+    --accent-2: #ff0055; /* Неоновый магента/розовый */
+    --glass-bg: rgba(20, 20, 35, 0.85);
+    --transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent-1), var(--accent-2));
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-1);
+}
+
+/* =========================================
+   ФОН И ОВЕРЛЕЙ
+   ========================================= */
+.bg-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('background.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    z-index: -2;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 10, 18, 0.85) 0%, rgba(20, 10, 30, 0.9) 100%);
+    z-index: -1;
+}
+
+/* =========================================
+   ТРИГГЕРЫ БОКОВЫХ ПАНЕЛЕЙ
+   ========================================= */
+.sidebar-trigger {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    color: var(--accent-1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.sidebar-trigger:hover {
+    background: rgba(0, 240, 255, 0.15);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-trigger { left: 20px; }
+.right-trigger { right: 20px; color: var(--accent-2); box-shadow: 0 0 15px rgba(255, 0, 85, 0.1); }
+.right-trigger:hover { background: rgba(255, 0, 85, 0.15); box-shadow: 0 0 25px rgba(255, 0, 85, 0.3); }
+
+/* =========================================
+   БОКОВЫЕ ПАНЕЛИ (SIDEBARS)
+   ========================================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 320px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    z-index: 1000;
+    padding: 40px 30px;
+    transition: transform var(--transition);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.left-sidebar {
+    left: 0;
+    transform: translateX(-100%);
+    border-right: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.right-sidebar {
+    right: 0;
+    transform: translateX(100%);
+    border-left: 1px solid rgba(255, 0, 85, 0.2);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 32px;
+    cursor: pointer;
+    transition: var(--transition);
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--accent-2);
+    transform: rotate(90deg);
+}
+
+.sidebar-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Навигация (Левая панель) */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nav-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    background: rgba(0, 240, 255, 0.1);
+    border-color: rgba(0, 240, 255, 0.3);
+    color: var(--accent-1);
+    transform: translateX(5px);
+}
+
+/* Ссылки (Правая панель) */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.extra-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+}
+
+.extra-link:hover {
+    background: rgba(255, 0, 85, 0.1);
+    border-color: rgba(255, 0, 85, 0.4);
+    color: var(--accent-2);
+    transform: translateX(-5px);
+}
+
+.extra-link svg {
+    flex-shrink: 0;
+}
+
+/* =========================================
+   ОСНОВНОЙ КОНТЕНТ
+   ========================================= */
+.content {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.nickname {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(48px, 10vw, 120px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-1) 50%, var(--accent-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.5),
+        0 0 40px rgba(255, 0, 85, 0.3);
+    /* Фоллбэк для text-shadow на градиентном тексте в некоторых браузерах */
+    filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+    margin-bottom: 20px;
+    animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4)); }
+    100% { filter: drop-shadow(0 0 35px rgba(255, 0, 85, 0.6)); }
+}
+
+.subtitle {
+    font-size: clamp(16px, 2vw, 24px);
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Секции (Карточки) */
+.section-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 60px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+.section-card:hover {
+    border-color: rgba(0, 240, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--accent-1);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-1), transparent);
+    border-radius: 2px;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.section-card p {
+    font-size: 17px;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+.section-card code {
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--accent-1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.footer-text {
+    margin-top: 40px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    border-top: 1px solid var(--card-border);
+    padding-top: 20px;
+}
+
+/* =========================================
+   СЕТКА АРТОВ
+   ========================================= */
+.arts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.art-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+}
+
+.art-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.art-item:hover {
+    border-color: var(--accent-2);
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+    transform: scale(1.02);
+}
+
+.art-item:hover img {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ
+   ========================================= */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   АДАПТИВНОСТЬ (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    /* На мобилках background-attachment: fixed работает плохо, меняем на scroll */
+    .bg-wrapper {
+        background-attachment: scroll;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .sidebar-trigger {
+        width: 40px;
+        height: 40px;
+        top: auto;
+        bottom: 20px;
+        transform: none;
+    }
+    
+    .sidebar-trigger:hover {
+        transform: scale(1.1);
+    }
+
+    .left-trigger { left: 20px; }
+    .right-trigger { right: 20px; }
+
+    .section-card {
+        padding: 25px 20px;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+
+    .arts-grid {
+        grid-template-columns: 1fr;
+    }
+}
